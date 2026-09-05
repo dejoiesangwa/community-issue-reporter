@@ -9,10 +9,17 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private long id;
-    private String name;
-    private String nationId;
+    @Column(nullable = false)
+    private String firstName;
+    @Column(nullable = false)
+    private String lastName;
+    @Column(unique = true)
+    private String email;
     @OneToOne
+    @JoinColumn(nullable = false)
+    @Enumerated(EnumType.STRING)
     private role role;
+
 
 
 
