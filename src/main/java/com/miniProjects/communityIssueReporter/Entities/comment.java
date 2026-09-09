@@ -10,11 +10,11 @@ public class comment {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private long id;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name= "issue_id")
     private issue issue;
     private String description;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     private LocalDate commentDate;

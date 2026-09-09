@@ -13,26 +13,28 @@ public class issue {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(nullable = false,name = "citizen_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "citizen_id")
     private User citizen;
     @Column(nullable = false)
     private String title;
     private String description;
     private LocalDate dateReported;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private category category;
     private String location;
     @Enumerated(EnumType.STRING)
     private issueStatus status = issueStatus.REPORTED;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "staff_id")
     private User staff;
-    @OneToMany(mappedBy = "issue")
-    private List<comment> comments = new ArrayList<>();
-    private List<statusHistory> issueStatusHistory = new ArrayList<>();
 
-    public issue(String title,User citizen, String description, String location,LocalDate dateReported) {
+    public issue(String title,User citizen, String description, String location,category category,LocalDate dateReported) {
         this.title = title;
         this.citizen = citizen;
         this.description = description;
+        this.category=category;
         this.location = location;
         this.dateReported =dateReported;
     }
@@ -93,13 +95,6 @@ public class issue {
         this.staff = staff;
     }
 
-    public List<comment> getComments() {
-        return comments;
-    }
-
-    public void AddComments(List<comment> comments) {
-        this.comments = comments;
-    }
 
     public User getCitizen() {
         return citizen;
@@ -107,5 +102,13 @@ public class issue {
 
     public void setCitizen(User citizen) {
         this.citizen = citizen;
+    }
+
+    public category getCategory() {
+        return category;
+    }
+
+    public void setCategory(category category) {
+        this.category = category;
     }
 }

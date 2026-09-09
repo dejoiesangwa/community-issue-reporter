@@ -18,17 +18,9 @@ public class User {
     private String lastName;
     @Column(unique = true)
     private String email;
-    @OneToOne
-    @JoinColumn(nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private role userRole;
-    @OneToMany(mappedBy = "staff")
-    private List<issue> issuesAssigned = new ArrayList<>();
-    @OneToMany(mappedBy = "citizen")
-    private List<issue> issuesReported = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    private List<comment> comments = new ArrayList<>();
-
     public User(String firstName, String lastName, String email, role userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -74,29 +66,5 @@ public class User {
 
     public void setUserRole(role userRole) {
         this.userRole = userRole;
-    }
-
-    public List<comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<comment> comments) {
-        this.comments = comments;
-    }
-
-    public List<issue> getIssuesReported() {
-        return issuesReported;
-    }
-
-    public void setIssuesReported(List<issue> issuesReported) {
-        this.issuesReported = issuesReported;
-    }
-
-    public List<issue> getIssuesAssigned() {
-        return issuesAssigned;
-    }
-
-    public void setIssuesAssigned(List<issue> issuesAssigned) {
-        this.issuesAssigned = issuesAssigned;
     }
 }

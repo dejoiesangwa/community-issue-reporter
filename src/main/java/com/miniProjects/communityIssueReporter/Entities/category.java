@@ -13,9 +13,6 @@ public class category {
     private long id;
     private String tittle;
     private String description;
-    @OneToMany(mappedBy = "category")
-    private List<issue> issues = new ArrayList<>();
-
     public category(String tittle, String description) {
         this.tittle = tittle;
         this.description = description;
@@ -43,13 +40,5 @@ public class category {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<issue> getIssues() {
-        return issues;
-    }
-
-    public void setIssues(List<issue> issues) {
-        this.issues = issues;
     }
 }

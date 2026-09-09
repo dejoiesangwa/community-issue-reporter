@@ -16,7 +16,7 @@ public class statusHistory {
     private issue issue;
     private issueStatus oldStatus;
     private issueStatus newStatus;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name= "user_id")
     private User user;
     private LocalDate dateUpdated;
