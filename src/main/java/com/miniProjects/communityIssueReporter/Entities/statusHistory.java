@@ -18,14 +18,54 @@ public class statusHistory {
     private issueStatus newStatus;
     @OneToOne
     @JoinColumn(name= "user_id")
-    private User statusUpdater;
+    private User user;
     private LocalDate dateUpdated;
 
-    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, User statusUpdater, LocalDate dateUpdated) {
+    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, User user, LocalDate dateUpdated) {
         this.issue = issue;
         this.oldStatus = oldStatus;
         this.newStatus = newStatus;
-        this.statusUpdater = statusUpdater;
+        this.user = user;
+        this.dateUpdated = dateUpdated;
+    }
+
+    public issue getIssue() {
+        return issue;
+    }
+
+    public void setIssue(issue issue) {
+        this.issue = issue;
+    }
+
+    public issueStatus getOldStatus() {
+        return oldStatus;
+    }
+
+    public void setOldStatus(issueStatus oldStatus) {
+        this.oldStatus = oldStatus;
+    }
+
+    public issueStatus getNewStatus() {
+        return newStatus;
+    }
+
+    public void setNewStatus(issueStatus newStatus) {
+        this.newStatus = newStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public LocalDate getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(LocalDate dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 }

@@ -4,6 +4,8 @@ import com.miniProjects.communityIssueReporter.enums.issueStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "issue")
@@ -11,6 +13,8 @@ public class issue {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+    @Column(nullable = false,name = "citizen_id")
+    private User citizen;
     @Column(nullable = false)
     private String title;
     private String description;
@@ -19,11 +23,15 @@ public class issue {
     @Enumerated(EnumType.STRING)
     private issueStatus status = issueStatus.REPORTED;
     @OneToOne
-    @JoinColumn(name = "assignedTo_id")
-    private User assignedTo;
+    @JoinColumn(name = "staff_id")
+    private User staff;
+    @OneToMany(mappedBy = "issue")
+    private List<comment> comments = new ArrayList<>();
+    private List<statusHistory> issueStatusHistory = new ArrayList<>();
 
-    public issue(String title, String description, String location,LocalDate dateReported) {
+    public issue(String title,User citizen, String description, String location,LocalDate dateReported) {
         this.title = title;
+        this.citizen = citizen;
         this.description = description;
         this.location = location;
         this.dateReported =dateReported;
@@ -77,11 +85,27 @@ public class issue {
         this.status = status;
     }
 
-    public User getAssignedTo() {
-        return assignedTo;
+    public User getStaff() {
+        return staff;
     }
 
-    public void setAssignedTo(User assignedTo) {
-        this.assignedTo = assignedTo;
+    public void setStaff(User staff) {
+        this.staff = staff;
+    }
+
+    public List<comment> getComments() {
+        return comments;
+    }
+
+    public void AddComments(List<comment> comments) {
+        this.comments = comments;
+    }
+
+    public User getCitizen() {
+        return citizen;
+    }
+
+    public void setCitizen(User citizen) {
+        this.citizen = citizen;
     }
 }
