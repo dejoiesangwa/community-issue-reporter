@@ -11,14 +11,14 @@ public class category {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    private String tittle;
+    private String title;
     private String description;
 
     public category() {
     }
 
-    public category(String tittle, String description) {
-        this.tittle = tittle;
+    public category(String title, String description) {
+        this.title = title;
         this.description = description;
     }
 
@@ -30,12 +30,12 @@ public class category {
         this.id = id;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String tittle) {
+        this.title = title;
     }
 
     public String getDescription() {

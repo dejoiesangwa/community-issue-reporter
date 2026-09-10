@@ -12,15 +12,18 @@ public class issue {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "citizen_id")
+    @JoinColumn(name = "citizen_id",nullable = false)
     private users citizen;
     @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private LocalDate dateReported;
-    @ManyToOne
-    @JoinColumn(name="category_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name="category_id",nullable = false)
     private category category;
+    @Column(nullable = false)
     private String location;
     @Enumerated(EnumType.STRING)
     private issueStatus status = issueStatus.REPORTED;

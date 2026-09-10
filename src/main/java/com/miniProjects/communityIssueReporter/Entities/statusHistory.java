@@ -11,24 +11,28 @@ public class statusHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name="issue_id")
     private issue issue;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false,name="old_status")
     private issueStatus oldStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false,name = "new_status")
     private issueStatus newStatus;
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name= "user_id")
-    private users users;
+    private users changedBy;
     private LocalDate dateUpdated;
 
     public statusHistory() {
     }
 
-    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, users users, LocalDate dateUpdated) {
+    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, users changedBy, LocalDate dateUpdated) {
         this.issue = issue;
         this.oldStatus = oldStatus;
         this.newStatus = newStatus;
-        this.users = users;
+        this.changedBy = changedBy;
         this.dateUpdated = dateUpdated;
     }
 
@@ -56,12 +60,12 @@ public class statusHistory {
         this.newStatus = newStatus;
     }
 
-    public users getUser() {
-        return users;
+    public users getChangedBy() {
+        return changedBy;
     }
 
-    public void setUser(users users) {
-        this.users = users;
+    public void setChangedBy(users changedBy) {
+        this.changedBy = changedBy;
     }
 
     public LocalDate getDateUpdated() {
