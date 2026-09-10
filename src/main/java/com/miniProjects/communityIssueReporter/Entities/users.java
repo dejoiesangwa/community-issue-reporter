@@ -3,12 +3,9 @@ package com.miniProjects.communityIssueReporter.Entities;
 import com.miniProjects.communityIssueReporter.enums.role;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Table(name="User")
-public class User {
+@Table(name="users")
+public class users {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private long id;
@@ -21,7 +18,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private role userRole;
-    public User(String firstName, String lastName, String email, role userRole) {
+
+    public users() {
+    }
+
+    public users(String firstName, String lastName, String email, role userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

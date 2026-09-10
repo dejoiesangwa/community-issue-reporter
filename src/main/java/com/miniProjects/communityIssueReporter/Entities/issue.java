@@ -4,8 +4,6 @@ import com.miniProjects.communityIssueReporter.enums.issueStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "issue")
@@ -15,7 +13,7 @@ public class issue {
     private long id;
     @ManyToOne(optional = false)
     @JoinColumn(name = "citizen_id")
-    private User citizen;
+    private users citizen;
     @Column(nullable = false)
     private String title;
     private String description;
@@ -28,9 +26,12 @@ public class issue {
     private issueStatus status = issueStatus.REPORTED;
     @ManyToOne
     @JoinColumn(name = "staff_id")
-    private User staff;
+    private users staff;
 
-    public issue(String title,User citizen, String description, String location,category category,LocalDate dateReported) {
+    public issue() {
+    }
+
+    public issue(String title, users citizen, String description, String location, category category, LocalDate dateReported) {
         this.title = title;
         this.citizen = citizen;
         this.description = description;
@@ -87,20 +88,20 @@ public class issue {
         this.status = status;
     }
 
-    public User getStaff() {
+    public users getStaff() {
         return staff;
     }
 
-    public void setStaff(User staff) {
+    public void setStaff(users staff) {
         this.staff = staff;
     }
 
 
-    public User getCitizen() {
+    public users getCitizen() {
         return citizen;
     }
 
-    public void setCitizen(User citizen) {
+    public void setCitizen(users citizen) {
         this.citizen = citizen;
     }
 

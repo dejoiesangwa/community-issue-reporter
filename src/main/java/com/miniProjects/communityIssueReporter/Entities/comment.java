@@ -16,13 +16,16 @@ public class comment {
     private String description;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private users users;
     private LocalDate commentDate;
 
-    public comment(issue issue, String description, User user, LocalDate commentDate) {
+    public comment() {
+    }
+
+    public comment(issue issue, String description, users users, LocalDate commentDate) {
         this.issue = issue;
         this.description = description;
-        this.user = user;
+        this.users = users;
         this.commentDate = commentDate;
     }
 
@@ -58,11 +61,11 @@ public class comment {
         this.commentDate = commentDate;
     }
 
-    public User getUser() {
-        return user;
+    public users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(users users) {
+        this.users = users;
     }
 }

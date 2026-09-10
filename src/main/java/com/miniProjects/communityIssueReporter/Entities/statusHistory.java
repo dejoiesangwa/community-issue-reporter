@@ -18,14 +18,17 @@ public class statusHistory {
     private issueStatus newStatus;
     @ManyToOne
     @JoinColumn(name= "user_id")
-    private User user;
+    private users users;
     private LocalDate dateUpdated;
 
-    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, User user, LocalDate dateUpdated) {
+    public statusHistory() {
+    }
+
+    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, users users, LocalDate dateUpdated) {
         this.issue = issue;
         this.oldStatus = oldStatus;
         this.newStatus = newStatus;
-        this.user = user;
+        this.users = users;
         this.dateUpdated = dateUpdated;
     }
 
@@ -53,12 +56,12 @@ public class statusHistory {
         this.newStatus = newStatus;
     }
 
-    public User getUser() {
-        return user;
+    public users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(users users) {
+        this.users = users;
     }
 
     public LocalDate getDateUpdated() {

@@ -13,6 +13,10 @@ public class category {
     private long id;
     private String tittle;
     private String description;
+
+    public category() {
+    }
+
     public category(String tittle, String description) {
         this.tittle = tittle;
         this.description = description;
