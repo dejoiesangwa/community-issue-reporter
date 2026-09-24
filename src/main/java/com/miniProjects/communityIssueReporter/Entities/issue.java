@@ -13,7 +13,7 @@ public class issue {
     private long id;
     @ManyToOne(optional = false)
     @JoinColumn(name = "citizen_id",nullable = false)
-    private users citizen;
+    private User citizen;
     @Column(nullable = false)
     private String title;
     @Column(nullable = false)
@@ -29,12 +29,12 @@ public class issue {
     private issueStatus status = issueStatus.REPORTED;
     @ManyToOne
     @JoinColumn(name = "staff_id")
-    private users staff;
+    private User staff;
 
     public issue() {
     }
 
-    public issue(String title, users citizen, String description, String location, category category, LocalDate dateReported) {
+    public issue(String title, User citizen, String description, String location, category category, LocalDate dateReported) {
         this.title = title;
         this.citizen = citizen;
         this.description = description;
@@ -91,20 +91,20 @@ public class issue {
         this.status = status;
     }
 
-    public users getStaff() {
+    public User getStaff() {
         return staff;
     }
 
-    public void setStaff(users staff) {
+    public void setStaff(User staff) {
         this.staff = staff;
     }
 
 
-    public users getCitizen() {
+    public User getCitizen() {
         return citizen;
     }
 
-    public void setCitizen(users citizen) {
+    public void setCitizen(User citizen) {
         this.citizen = citizen;
     }
 

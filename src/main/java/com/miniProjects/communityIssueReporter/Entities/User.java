@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="users")
-public class users {
+public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private long id;
@@ -19,10 +19,10 @@ public class users {
     @Column(nullable = false)
     private role userRole;
 
-    public users() {
+    public User() {
     }
 
-    public users(String firstName, String lastName, String email, role userRole) {
+    public User(String firstName, String lastName, String email, role userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

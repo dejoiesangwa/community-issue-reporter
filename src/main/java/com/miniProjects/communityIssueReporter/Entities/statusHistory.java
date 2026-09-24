@@ -22,13 +22,13 @@ public class statusHistory {
     private issueStatus newStatus;
     @ManyToOne(optional = false)
     @JoinColumn(name= "user_id")
-    private users changedBy;
+    private User changedBy;
     private LocalDate dateUpdated;
 
     public statusHistory() {
     }
 
-    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, users changedBy, LocalDate dateUpdated) {
+    public statusHistory(issue issue, issueStatus oldStatus, issueStatus newStatus, User changedBy, LocalDate dateUpdated) {
         this.issue = issue;
         this.oldStatus = oldStatus;
         this.newStatus = newStatus;
@@ -60,11 +60,11 @@ public class statusHistory {
         this.newStatus = newStatus;
     }
 
-    public users getChangedBy() {
+    public User getChangedBy() {
         return changedBy;
     }
 
-    public void setChangedBy(users changedBy) {
+    public void setChangedBy(User changedBy) {
         this.changedBy = changedBy;
     }
 
