@@ -4,6 +4,7 @@ import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserRequestDto;
 import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserResponseDto;
 import com.miniProjects.communityIssueReporter.Entities.User;
 import com.miniProjects.communityIssueReporter.Repositories.UserRepository;
+import com.miniProjects.communityIssueReporter.enums.role;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,9 @@ public class UserService {
         User.setPassword(
                 passwordEncoder.encode(UserRequestDto.password())
         );
+        User.setUserRole(role.CITIZEN);
         UserRepository.save(User);
         return new UserResponseDto(
-                User.getId(), User.getFirstName(),User.getLastName(),User.getEmail()
-        );
+                User.getId(), User.getFirstName(),User.getLastName(),User.getEmail(),User.getUserRole());
     }
 }

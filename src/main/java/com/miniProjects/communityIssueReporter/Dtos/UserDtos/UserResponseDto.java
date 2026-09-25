@@ -6,7 +6,8 @@ public record UserResponseDto(
         long id,
         String firstName,
         String lastName,
-        String email
+        String email,
+        role UserRole
 
 ) {
 }
