@@ -1,8 +1,11 @@
 package com.miniProjects.communityIssueReporter.Controllers;
 
-import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserRequestDto;
-import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserResponseDto;
-import com.miniProjects.communityIssueReporter.Services.UserService;
+import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserCreationRequestDto;
+import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserCreationResponseDto;
+import com.miniProjects.communityIssueReporter.Dtos.login.loginRequestDto;
+import com.miniProjects.communityIssueReporter.Dtos.login.loginResponseDto;
+import com.miniProjects.communityIssueReporter.Services.UserCreationService;
+import com.miniProjects.communityIssueReporter.Services.loginService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class UserControllers {
-    private final UserService UserService;
+    private final UserCreationService UserCreationService;
 
-    public UserControllers(UserService userService) {
-        UserService = userService;
+    public UserControllers(UserCreationService userCreationService) {
+        UserCreationService = userCreationService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponseDto> createUser(
-            @Valid @RequestBody UserRequestDto request
+    public ResponseEntity<UserCreationResponseDto> createUser(
+            @Valid @RequestBody UserCreationRequestDto request
         ){
-    UserResponseDto response = UserService.register(request);
+    UserCreationResponseDto response = UserCreationService.register(request);
     return ResponseEntity
             .status(HttpStatus.CREATED)
             .body(response);
+}
+@PostMapping("/login")
+    public ResponseEntity<loginResponseDto> login(@RequestBody loginRequestDto request){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(loginService.login(request);
 }
 }
