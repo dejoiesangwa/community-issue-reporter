@@ -3,6 +3,7 @@ package com.miniProjects.communityIssueReporter.Services;
 import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserRequestDto;
 import com.miniProjects.communityIssueReporter.Dtos.UserDtos.UserResponseDto;
 import com.miniProjects.communityIssueReporter.Entities.User;
+import com.miniProjects.communityIssueReporter.Exceptions.UserAlreadyExists;
 import com.miniProjects.communityIssueReporter.Repositories.UserRepository;
 import com.miniProjects.communityIssueReporter.enums.role;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,10 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
     public UserResponseDto register(UserRequestDto UserRequestDto){
+        String email = UserRequestDto.email().trim().toLowerCase();
+        if(UserRepository.existsByEmail(email)){
+            throw new UserAlreadyExists("The user already exists");
+        }
         User User = new User();
         User.setFirstName(UserRequestDto.firstName());
         User.setLastName(UserRequestDto.lastName());
